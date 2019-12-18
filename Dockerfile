@@ -33,10 +33,6 @@ ENV PATH /opt/conda/bin:$PATH
 # python packages 
 # ------------------------------------------------------------------
 RUN pip config set global.index-url https://pypi.doubanio.com/simple && \
-    conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/ && \
-    conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/ && \
-    conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/ && \
-    conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/ && \
     conda config --set show_channel_urls yes && \
     conda install pytorch torchvision cudatoolkit=10.1 -c pytorch
 
