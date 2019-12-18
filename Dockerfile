@@ -23,7 +23,7 @@ RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
 # ==================================================================
 # miniconda
 # ------------------------------------------------------------------
-    wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh && \
+    wget https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh && \
 	/bin/bash miniconda.sh -b -p /opt/conda && \
 	rm miniconda.sh
 
@@ -32,9 +32,8 @@ ENV PATH /opt/conda/bin:$PATH
 # ==================================================================
 # python packages 
 # ------------------------------------------------------------------
-RUN pip config set global.index-url https://pypi.doubanio.com/simple && \
-    conda config --set show_channel_urls yes && \
-    conda install pytorch torchvision cudatoolkit=10.1 -c pytorch
+COPY .condarc /opt/conda/
+RUN conda install pytorch torchvision cudatoolkit=10.1 -c pytorch
 
 # ==================================================================
 # config & cleanup
